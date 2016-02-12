@@ -272,6 +272,7 @@ int main(int argc, char** argv) {
         cout << "-p    primer3 path" << "\n";
         cout << "-t    primer3 parameters file path" << "\n";
         cout << "-o    output path" << "\n";
+        cout << "-q    number of hit sequences for perimer design of each query (default: 3)" << "\n";
         cout << "-f    hit sequence flanking length (default: 200)" << "\n";
         cout << "-s    product min size (default: 200)" << "\n";
         cout << "-l    product max size (default: 1000)" << "\n";
@@ -286,6 +287,7 @@ int main(int argc, char** argv) {
     string bed_path;
     string muscle_path;
     string primer3_path;
+    int id_hits_for_each_query = 3;
     int flanking_length = 200;
     int product_min_length = 200;
     int product_max_length = 1000;
@@ -318,6 +320,9 @@ int main(int argc, char** argv) {
         }
         if(strcmp(argv[i], "-t") == 0) {
             parameters_file = argv[i + 1];
+        }
+        if(strcmp(argv[i], "-q") == 0) {
+            id_hits_for_each_query = atoi(argv[i + 1]);
         }
         if(strcmp(argv[i], "-f") == 0) {
             flanking_length = atoi(argv[i + 1]);
@@ -364,7 +369,7 @@ int main(int argc, char** argv) {
         if(input_multiple_fasta_path.compare("") == 0) {
             cout << "Parse blast table result..." << "\n";
 
-            map<string, string> ids_path_map = generateIDsFileFromBlastTab(blast_table, 3);
+            map<string, string> ids_path_map = generateIDsFileFromBlastTab(blast_table, id_hits_for_each_query);
 
             cout << "Start design primer..." << "\n";
 
