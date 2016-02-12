@@ -21,7 +21,7 @@ There is number of additional dependencies not provided by GSP authors. Addition
 note: If cmake is not installed, please go to https://cmake.org/.  
 
 # bin
-The bin folder contains the executable files of GSP and the dependencies, all of them has tested in Ubuntu 14.04 (64-bit).
+The project folder contains a excutable GSP file and the bin folder contains the executable files of the dependencies, all of them has tested in Ubuntu 14.04 (64-bit).
 
 # Usage  
 Before using GSP, please generate a blast result (tab format). For example, using query sequences blast polyploid genome.  
