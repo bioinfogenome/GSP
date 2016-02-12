@@ -13,8 +13,8 @@ Web server: http://probes.pw.usda.gov/GSP/
 
 # Usage
 Usage: GSP  
-<b>-r</b>    blast table result path  
--d    sequence database path (blast database path)  
+<b>-r</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    blast table result path  
+<b>-d</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    sequence database path (blast database path)  
 -a    fasta file path (for design specefic priemrs in multiple sequences only)  
 -b    bed path  
 -m    muscle path  
