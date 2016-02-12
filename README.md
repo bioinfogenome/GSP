@@ -28,6 +28,7 @@ There is number of additional dependencies not provided by GSP authors. Addition
 <b>-p</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primer3 path  
 <b>-t</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primer3 parameters file path  
 <b>-o</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output path  
+<b>-q</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number of hit sequences for perimer design of each query (default: 3)  
 <b>-f</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hit sequence flanking length (default: 200)  
 <b>-s</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;product min size (default: 200)  
 <b>-l</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;product max size (default: 1000)  
