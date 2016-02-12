@@ -12,17 +12,17 @@ Web server: http://probes.pw.usda.gov/GSP/
 4. make
 
 # Usage
-Usage: GSP  
-<b>-r</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    blast table result path  
-<b>-d</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    sequence database path (blast database path)  
--a    fasta file path (for design specefic priemrs in multiple sequences only)  
--b    bed path  
--m    muscle path  
--p    primer3 path  
--t    primer3 parameters file path  
--o    output path  
--f    hit sequence flanking length (default: 200)  
--s    product min size (default: 200)  
--l    product max size (default: 1000)  
--c    different site in primer (default: 2)  
--e    different site in 3 end of primer (default: No)  
+<b>Usage:</b> GSP  
+<b>-r</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blast table result path  
+<b>-d</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sequence database path (blast database path)  
+<b>-a</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;asta file path (for design specefic priemrs in multiple sequences only)  
+<b>-b</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bed path  
+<b>-m</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;muscle path  
+<b>-p</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primer3 path  
+<b>-t</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primer3 parameters file path  
+<b>-o</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output path  
+<b>-f</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hit sequence flanking length (default: 200)  
+<b>-s</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;product min size (default: 200)  
+<b>-l</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;product max size (default: 1000)  
+<b>-c</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different site in primer (default: 2)  
+<b>-e</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different site in 3 end of primer (default: No)  
