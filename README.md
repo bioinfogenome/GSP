@@ -7,9 +7,9 @@ Web server: http://probes.pw.usda.gov/GSP/
 
 # Dependencies
 There is number of additional dependencies not provided by GSP authors. Additional programs include:  
-1. <b>bedtools:</b> a powerful toolset for genome arithmetic (http://bedtools.readthedocs.org/en/latest/).
-2. <b>Muscle:</b> Multiple sequence alignment program (http://www.drive5.com/muscle/).
-3. <b>Primer3:</b> program for designing PCR primers (http://primer3.sourceforge.net/).
+1. <b>bedtools:</b> a powerful toolset for genome arithmetic (http://bedtools.readthedocs.org/en/latest/).  
+2. <b>Muscle:</b> Multiple sequence alignment program (http://www.drive5.com/muscle/).  
+3. <b>Primer3:</b> program for designing PCR primers (http://primer3.sourceforge.net/).  
 
 
 # Installation
