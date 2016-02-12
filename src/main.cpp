@@ -634,8 +634,8 @@ string designPrimer(string id_file, string blast_table, string dbs, string bed_p
     vector<Primer> primer_vector_left = getSpecificPrimer(primer3_input_path.substr(0, primer3_input_path.find_last_of("/")) + "/" + "primer3.output", seq_map, alignment_seq_map, ds_map, "LEFT_PRIMER");
     vector<Primer> primer_vector_right = getSpecificPrimer(primer3_input_path.substr(0, primer3_input_path.find_last_of("/")) + "/" + "primer3.output", seq_map, alignment_seq_map, ds_map, "RIGHT_PRIMER");
 
-    cout << primer_vector_left.size() << "\n";
-    cout << primer_vector_right.size() << "\n";
+    //cout << primer_vector_left.size() << "\n";
+    //cout << primer_vector_right.size() << "\n";
 
     vector<Primer> primer_vector_left_p = parsePrimerVector(primer_vector_left);
     vector<Primer> primer_vector_right_p = parsePrimerVector(primer_vector_right);
