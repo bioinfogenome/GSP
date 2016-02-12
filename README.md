@@ -1,7 +1,7 @@
 # GSP
 A tool for Genome Specific Primers design in polyploid species
 
-In a polyploid species, genes from the homeologous genomes exhibit a very high sequence similarity, especially in the coding regions. This makes it difficult to design genome-specific primers to amplify specific sequences from the individual genomes in the polyploid genome background. Development of genome-specific primers for important genes in polyploid species is very useful and critical not only for the study of sequence diversity and association mapping of genes in natural populations, but also for the development of gene-based functional markers for marker-assisted breeding. GSP is a powerful web-based platform for designing genome-specific primers that can distinguish the sequences among different genomes in a polypoid species.
+In a polyploid species, genes from the homeologous genomes exhibit a very high sequence similarity, especially in the coding regions. This makes it difficult to design genome-specific primers to amplify specific sequences from the individual genomes in the polyploid genome background. Development of genome-specific primers for important genes in polyploid species is very useful and critical not only for the study of sequence diversity and association mapping of genes in natural populations, but also for the development of gene-based functional markers for marker-assisted breeding. GSP is a powerful tool for designing genome-specific primers that can distinguish the sequences among different genomes in a polypoid species. In additoon, GSP also allow user to design speicific priemrs in multiple sequence alignment.
 
 Web server: http://probes.pw.usda.gov/GSP/
 
@@ -14,9 +14,11 @@ There is number of additional dependencies not provided by GSP authors. Addition
 
 # Installation
 1. Download and upzip.
-2. change the path to upzip folder.
-3. cmake ./src
-4. make
+2. Enter the directory after extracting.
+3. type "cmake ./src"
+4. type "make"
+
+note: If cmake is not installed, please go to https://cmake.org/.
 
 # Usage
 <b>Usage:</b> GSP  
@@ -34,3 +36,6 @@ There is number of additional dependencies not provided by GSP authors. Addition
 <b>-l</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;product max size (default: 1000)  
 <b>-c</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different site in primer (default: 2)  
 <b>-e</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different site in 3 end of primer (default: No)  
+
+# bin
+The bin folder contains the executable files of GSP and the dependencies, all of them has tested in Ubuntu 14.04.
