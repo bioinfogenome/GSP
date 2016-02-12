@@ -1,7 +1,7 @@
 # GSP
 A tool for Genome Specific Primers design in polyploid species
 
-In a polyploid species, genes from the homeologous genomes exhibit a very high sequence similarity, especially in the coding regions. This makes it difficult to design genome-specific primers to amplify specific sequences from the individual genomes in the polyploid genome background. Development of genome-specific primers for important genes in polyploid species is very useful and critical not only for the study of sequence diversity and association mapping of genes in natural populations, but also for the development of gene-based functional markers for marker-assisted breeding. GSP is a powerful tool for designing genome-specific primers that can distinguish the sequences among different genomes in a polypoid species. In additoon, GSP also allow user to design speicific priemrs in multiple sequence alignment.
+In a polyploid species, genes from the homeologous genomes exhibit a very high sequence similarity, especially in the coding regions. This makes it difficult to design genome-specific primers to amplify specific sequences from the individual genomes in the polyploid genome background. Development of genome-specific primers for important genes in polyploid species is very useful and critical not only for the study of sequence diversity and association mapping of genes in natural populations, but also for the development of gene-based functional markers for marker-assisted breeding. GSP is a powerful tool for designing genome-specific primers that can distinguish the sequences among different genomes in a polypoid species. In additoon, GSP also allow user to design specific priemrs in multiple sequence alignment.
 
 Web server: http://probes.pw.usda.gov/GSP/
 
@@ -37,5 +37,11 @@ note: If cmake is not installed, please go to https://cmake.org/.
 <b>-c</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different site in primer (default: 2)  
 <b>-e</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different site in 3 end of primer (default: No)  
 
+<b>Example 2:</b>  
+Design specific primers of multiple sequences.  
+
+ ./GSP -a ./example/example2/sequences.fas -b ./bin/bedtools -m ./bin/muscle -p ./bin/primer3_core -o ./example2_result.csv
+
+
 # bin
-The bin folder contains the executable files of GSP and the dependencies, all of them has tested in Ubuntu 14.04.
+The bin folder contains the executable files of GSP and the dependencies, all of them has tested in Ubuntu 14.04 (64-bit).
