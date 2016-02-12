@@ -5,6 +5,13 @@ In a polyploid species, genes from the homeologous genomes exhibit a very high s
 
 Web server: http://probes.pw.usda.gov/GSP/
 
+# Dependencies
+There is number of additional dependencies not provided by GSP authors. Additional programs include:  
+1. <b>bedtools:</b> a powerful toolset for genome arithmetic (http://bedtools.readthedocs.org/en/latest/).
+2. <b>Muscle:</b> Multiple sequence alignment program (http://www.drive5.com/muscle/).
+3. <b>Primer3:</b> program for designing PCR primers (http://primer3.sourceforge.net/).
+
+
 # Installation
 1. Download and upzip.
 2. change the path to upzip folder.
@@ -15,7 +22,7 @@ Web server: http://probes.pw.usda.gov/GSP/
 <b>Usage:</b> GSP  
 <b>-r</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blast table result path  
 <b>-d</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sequence database path (blast database path)  
-<b>-a</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;asta file path (for design specefic priemrs in multiple sequences only)  
+<b>-a</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fasta file path (for design specefic priemrs in multiple sequences only)  
 <b>-b</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bed path  
 <b>-m</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;muscle path  
 <b>-p</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primer3 path  
