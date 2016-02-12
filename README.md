@@ -23,7 +23,9 @@ note: If cmake is not installed, please go to https://cmake.org/.
 # bin
 The bin folder contains the executable files of GSP and the dependencies, all of them has tested in Ubuntu 14.04 (64-bit).
 
-# Usage
+# Usage  
+Before using GSP, please generate a blast result (tab format). For example, using query sequences blast polyploid genome.  
+
 <b>Usage:</b> GSP  
 <b>-r</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blast table result path  
 <b>-d</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sequence database path (blast database path)  
@@ -42,9 +44,16 @@ The bin folder contains the executable files of GSP and the dependencies, all of
 
 <b>Example 1:</b>  
 Design specific primers in polyploid based on blast result.  
+
 ./GSP -r ./example/example1/blast.tab -d ./example/example1/sequences.fas -b ./bin/bedtools -m ./bin/muscle -p ./bin/primer3_core -o ./example1_result.csv -q 3  
 
 <b>Example 2:</b>  
 Design specific primers of multiple sequences.  
+
  ./GSP -a ./example/example2/sequences.fas -b ./bin/bedtools -m ./bin/muscle -p ./bin/primer3_core -o ./example2_result.csv  
  
+ <b>Example 3:</b>  
+Design specific primers in polyploid based on blast result with primer parameters setting. 
+
+./GSP -r ./example/example3/blast.tab -d ./example/example3/sequences.fas -b ./bin/bedtools -m ./bin/muscle -p ./bin/primer3_core -o ./example3_result.csv -q 3 -t ./example/example3/parameter_for_primer  
+
