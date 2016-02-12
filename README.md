@@ -18,7 +18,10 @@ There is number of additional dependencies not provided by GSP authors. Addition
 3. type "cmake ./src"
 4. type "make"
 
-note: If cmake is not installed, please go to https://cmake.org/.
+note: If cmake is not installed, please go to https://cmake.org/.  
+
+# bin
+The bin folder contains the executable files of GSP and the dependencies, all of them has tested in Ubuntu 14.04 (64-bit).
 
 # Usage
 <b>Usage:</b> GSP  
@@ -37,11 +40,11 @@ note: If cmake is not installed, please go to https://cmake.org/.
 <b>-c</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different site in primer (default: 2)  
 <b>-e</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different site in 3 end of primer (default: No)  
 
+<b>Example 1:</b>  
+Design specific primers in polyploid based on blast result.  
+./GSP -r ./example/example1/blast.tab -d ./example/example1/sequences.fas -b ./bin/bedtools -m ./bin/muscle -p ./bin/primer3_core -o ./example1_result.csv -q 3  
+
 <b>Example 2:</b>  
 Design specific primers of multiple sequences.  
-
- ./GSP -a ./example/example2/sequences.fas -b ./bin/bedtools -m ./bin/muscle -p ./bin/primer3_core -o ./example2_result.csv
-
-
-# bin
-The bin folder contains the executable files of GSP and the dependencies, all of them has tested in Ubuntu 14.04 (64-bit).
+ ./GSP -a ./example/example2/sequences.fas -b ./bin/bedtools -m ./bin/muscle -p ./bin/primer3_core -o ./example2_result.csv  
+ 
