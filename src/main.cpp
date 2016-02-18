@@ -515,18 +515,20 @@ map<string, string> generateIDsFileFromBlastTab(string blast_table, int id_hits_
         vector<string> tmp_v = split(line, "\t");
         if(tmp_v[0].compare(query_id) != 0) {
             if(query_id.compare("") != 0) {
-                index++;
-                stringstream ss;
-                ss << index;
-                string folder_path = blast_table.substr(0, blast_table.find_last_of("/")) + "/" + ss.str().c_str();
-                string mkdir_cmd = "mkdir " + folder_path;
-                system(mkdir_cmd.c_str());
+                if(hit_number == id_hits_for_each_query) {
+                    index++;
+                    stringstream ss;
+                    ss << index;
+                    string folder_path = blast_table.substr(0, blast_table.find_last_of("/")) + "/" + ss.str().c_str();
+                    string mkdir_cmd = "mkdir " + folder_path;
+                    system(mkdir_cmd.c_str());
 
-                ofstream fout(folder_path + "/" + "ids");
-                fout << hits_id;
-                fout.close();
-                //ids_file_vec.push_back(folder_path + "/" + "ids");
-                ids_map[query_id] = folder_path + "/" + "ids";
+                    ofstream fout(folder_path + "/" + "ids");
+                    fout << hits_id;
+                    fout.close();
+                    //ids_file_vec.push_back(folder_path + "/" + "ids");
+                    ids_map[query_id] = folder_path + "/" + "ids";
+                }
             }
             query_id = tmp_v[0];
             hits_id = "";
@@ -539,6 +541,7 @@ map<string, string> generateIDsFileFromBlastTab(string blast_table, int id_hits_
                 hits_map[tmp_v[1]] = "";
                 hit_number++;
                 if(hit_number > id_hits_for_each_query) {
+                    hit_number = id_hits_for_each_query;
                     continue;
                 }
                 hits_id = hits_id + tmp_v[1] + "\n";
@@ -546,18 +549,20 @@ map<string, string> generateIDsFileFromBlastTab(string blast_table, int id_hits_
         }
     }
 
-    index++;
-    stringstream ss;
-    ss << index;
-    string folder_path = blast_table.substr(0, blast_table.find_last_of("/")) + "/" + ss.str().c_str();
-    string mkdir_cmd = "mkdir " + folder_path;
-    system(mkdir_cmd.c_str());
+    if(hit_number == id_hits_for_each_query) {
+        index++;
+        stringstream ss;
+        ss << index;
+        string folder_path = blast_table.substr(0, blast_table.find_last_of("/")) + "/" + ss.str().c_str();
+        string mkdir_cmd = "mkdir " + folder_path;
+        system(mkdir_cmd.c_str());
 
-    ofstream fout(folder_path + "/" + "ids");
-    fout << hits_id;
-    fout.close();
-    //ids_file_vec.push_back(folder_path + "/" + "ids");
-    ids_map[query_id] = folder_path + "/" + "ids";
+        ofstream fout(folder_path + "/" + "ids");
+        fout << hits_id;
+        fout.close();
+        //ids_file_vec.push_back(folder_path + "/" + "ids");
+        ids_map[query_id] = folder_path + "/" + "ids";
+    }
 
     fin.close();
     return ids_map;
