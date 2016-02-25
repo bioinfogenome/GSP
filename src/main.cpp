@@ -228,6 +228,7 @@ public:
     }
 };
 
+string generateString(int length);
 string generateIDsFileFromMultipleFasta(string fasta_file_path);
 void mergeAllPrimersResult(string query_id, string primers_result_path, string output_path);
 map<string, string> generateIDsFileFromBlastTab(string blast_table, int id_hits_for_each_query);
@@ -346,6 +347,7 @@ int main(int argc, char** argv) {
             web_flag = argv[i + 1];
         }
     }
+    
 /*
     string blast_table = "/home/yiwang/Public/GSP/example/blast.tab";
     string dbs = "/var/www/GSP/dbs/Triticum_aestivum.fa";
@@ -367,6 +369,12 @@ int main(int argc, char** argv) {
         designPrimer(id_file, blast_table, dbs, bed_path, muscle_path, primer3_path, flanking_length, product_min_length, product_max_length, diff_setting, end_flag);
     } else {
         if(input_multiple_fasta_path.compare("") == 0) {
+            ifstream fin_exist(output_path);
+            if(fin_exist) {
+                remove(output_path.c_str());
+            }
+            fin_exist.close();
+
             cout << "Parse blast table result..." << "\n";
 
             map<string, string> ids_path_map = generateIDsFileFromBlastTab(blast_table, id_hits_for_each_query);
@@ -379,6 +387,12 @@ int main(int argc, char** argv) {
                 mergeAllPrimersResult(iter->first, primers_result_path, output_path);
             }
         } else {
+            ifstream fin_exist(output_path);
+            if(fin_exist) {
+                remove(output_path.c_str());
+            }
+            fin_exist.close();
+
             string ids_path = generateIDsFileFromMultipleFasta(input_multiple_fasta_path);
 
             cout << "Start design primer..." << "\n";
@@ -391,9 +405,26 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-string generateIDsFileFromMultipleFasta(string fasta_file_path) {
+string generateString(int length) {
+    static const char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    int strLen = sizeof(alphabet)-1;
+    char genRandom;
+    string str;
+    srand(time(0));
+    for(int i=0; i<length; i++)
+    {
+        genRandom = alphabet[rand()%strLen];
+        str += genRandom;
+    }
+    return str;
+}
 
-    string folder_path = fasta_file_path.substr(0, fasta_file_path.find_last_of("/")) + "/" + "1";
+string generateIDsFileFromMultipleFasta(string fasta_file_path) {
+    string temp_path = fasta_file_path.substr(0, fasta_file_path.find_last_of("/")) + "/" + generateString(6);
+    string mkdir_tmp = "mkdir " + temp_path;
+    system(mkdir_tmp.c_str());
+
+    string folder_path = temp_path + "/" + "1";
     string mkdir_cmd = "mkdir " + folder_path;
     system(mkdir_cmd.c_str());
 
@@ -501,6 +532,10 @@ void mergeAllPrimersResult(string query_id, string primers_result_path, string o
 }
 
 map<string, string> generateIDsFileFromBlastTab(string blast_table, int id_hits_for_each_query) {
+    string temp_path = blast_table.substr(0, blast_table.find_last_of("/")) + "/" + generateString(6);
+    string mkdir_tmp = "mkdir " + temp_path;
+    system(mkdir_tmp.c_str());
+
     //vector<string> ids_file_vec;
     map<string, string> ids_map;
 
@@ -519,7 +554,7 @@ map<string, string> generateIDsFileFromBlastTab(string blast_table, int id_hits_
                     index++;
                     stringstream ss;
                     ss << index;
-                    string folder_path = blast_table.substr(0, blast_table.find_last_of("/")) + "/" + ss.str().c_str();
+                    string folder_path = temp_path + "/" + ss.str().c_str();
                     string mkdir_cmd = "mkdir " + folder_path;
                     system(mkdir_cmd.c_str());
 
@@ -553,7 +588,7 @@ map<string, string> generateIDsFileFromBlastTab(string blast_table, int id_hits_
         index++;
         stringstream ss;
         ss << index;
-        string folder_path = blast_table.substr(0, blast_table.find_last_of("/")) + "/" + ss.str().c_str();
+        string folder_path = temp_path + "/" + ss.str().c_str();
         string mkdir_cmd = "mkdir " + folder_path;
         system(mkdir_cmd.c_str());
 
@@ -917,7 +952,7 @@ void parseAlignment(string alignment_file_path) {
                 dash_number++;
             }
         }
-        if(dash_number == con.length() - 2) {
+        if(dash_number <= con.length() - 2) {
             start_a = i + 1;
             break;
         }
@@ -932,7 +967,7 @@ void parseAlignment(string alignment_file_path) {
                 dash_number++;
             }
         }
-        if(dash_number == con.length() - 2) {
+        if(dash_number <= con.length() - 2) {
             end_a = i + 1;
             break;
         }
