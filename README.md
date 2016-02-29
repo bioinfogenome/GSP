@@ -42,6 +42,8 @@ Before using GSP, please generate a blast result (tab format). For example, usin
 <b>-c</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different site in primer (default: 2)  
 <b>-e</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different site in 3 end of primer (default: No)  
 
+Please use absolute path  
+
 <b>Example 1:</b>  
 Design specific primers in polyploid based on blast result.  
 

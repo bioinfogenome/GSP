@@ -279,6 +279,8 @@ int main(int argc, char** argv) {
         cout << "-l    product max size (default: 1000)" << "\n";
         cout << "-c    different site in primer (default: 2)" << "\n";
         cout << "-e    different site in 3 end of primer (default: No)" << "\n";
+        cout << "\n";
+        cout << "Please use absolute path" << "\n";
         exit(0);
     }
 
@@ -347,7 +349,6 @@ int main(int argc, char** argv) {
             web_flag = argv[i + 1];
         }
     }
-    
 /*
     string blast_table = "/home/yiwang/Public/GSP/example/blast.tab";
     string dbs = "/var/www/GSP/dbs/Triticum_aestivum.fa";
@@ -363,6 +364,28 @@ int main(int argc, char** argv) {
     string id_file = "/home/yiwang/Public/GSP/ids";
     string output_path = blast_table.substr(0, blast_table.find_last_of("/")) + "/" + "primers.csv";
     string web_flag = "No";
+*/
+/*
+    string blast_table = "/home/yiwang/Public/GSP/example/blast.tab";
+    string dbs = "/var/www/GSP/dbs/Triticum_aestivum.fa";
+    string bed_path = "bedtools";
+    string muscle_path = "/var/www/GSP/bin/muscle3.8.31_i86linux64";
+    string primer3_path = "/var/www/GSP/bin/primer3_core";
+    int flanking_length = 200;
+    int product_min_length = 200;
+    int product_max_length = 1000;
+    int diff_setting = 2;
+    string end_flag = "No";
+
+    string id_file = "/home/yiwang/Public/GSP/ids";
+    string output_path = blast_table.substr(0, blast_table.find_last_of("/")) + "/" + "primers.csv";
+    string web_flag = "No";
+*/
+/*
+    string blast_table = "/home/yiwang/Public/GSP/example/blast.tab";
+    string dbs = "/var/www/GSP/dbs/Triticum_aestivum.fa";
+
+    string web_flag = "Yes";
 */
 
     if(web_flag.compare("Yes") == 0) {
