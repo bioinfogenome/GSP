@@ -18,7 +18,7 @@ There is number of additional dependencies not provided by GSP authors. Addition
 3. type "cmake ./src"
 4. type "make"
 
-Note:
+Note:  
 1. If cmake is not installed, please go to https://cmake.org/.  
 2. If Boost is not installed, please go to http://www.boost.org/.  
 
