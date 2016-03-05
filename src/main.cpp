@@ -228,6 +228,9 @@ public:
     }
 };
 
+bool fileExist(string path);
+bool binExist(string path, string type);
+bool flagExist(int argc, char** argv, string flag);
 string generateString(int length);
 string generateIDsFileFromMultipleFasta(string fasta_file_path);
 void mergeAllPrimersResult(string query_id, string primers_result_path, string output_path);
@@ -262,15 +265,15 @@ string parameters_file = "";
 
 int main(int argc, char** argv) {
 
-    if(argc < 6) {
+    if(argc < 2) {
         cout << "Usage: GSP" << "\n";
         //cout << "-i    id file path" << "\n";
         cout << "-r    blast table result path" << "\n";
         cout << "-d    sequence database path (blast database path)" << "\n";
         cout << "-a    fasta file path (for design specefic priemrs in multiple sequences only)" << "\n";
-        cout << "-b    bed path" << "\n";
-        cout << "-m    muscle path" << "\n";
-        cout << "-p    primer3 path" << "\n";
+        cout << "-b    bedtools path (default: bedtools)" << "\n";
+        cout << "-m    muscle path (default: muscle)" << "\n";
+        cout << "-p    primer3 path (default: primer3_core)" << "\n";
         cout << "-t    primer3 parameters file path" << "\n";
         cout << "-o    output path" << "\n";
         cout << "-q    number of hit sequences for perimer design of each query (default: 3)" << "\n";
@@ -279,17 +282,19 @@ int main(int argc, char** argv) {
         cout << "-l    product max size (default: 1000)" << "\n";
         cout << "-c    different site in primer (default: 2)" << "\n";
         cout << "-e    different site in 3 end of primer (default: No)" << "\n";
-        cout << "\n";
-        cout << "Please use absolute path" << "\n";
+
+        cout << "Note:" << "\n";
+        cout << "1. Make sure that the dependencies (bedtools, muscle, primer3_core) are in the $PATH. If not, they must be specified (-b, -m, -p)." << "\n";
+        cout << "2. Please use absolute path." << "\n";
         exit(0);
     }
 
     string id_file;
     string blast_table;
     string dbs = "";
-    string bed_path;
-    string muscle_path;
-    string primer3_path;
+    string bed_path = "bedtools";
+    string muscle_path = "muscle";
+    string primer3_path = "primer3_core";
     int id_hits_for_each_query = 3;
     int flanking_length = 200;
     int product_min_length = 200;
@@ -299,30 +304,83 @@ int main(int argc, char** argv) {
     string output_path = blast_table.substr(0, blast_table.find_last_of("/")) + "/" + "primers.csv";
     string web_flag = "No";
 
+    int bs = 0;
+    int ms = 0;
+    int ps = 0;
+
+    if(!flagExist(argc, argv, "-a")) {
+        if(!flagExist(argc, argv, "-r") || !flagExist(argc, argv, "-d")) {
+            if(!flagExist(argc, argv, "-r")) {
+                cout << "Input error: (-r) blast table result path must be specified" << "\n";
+                exit(0);
+            }
+            if(!flagExist(argc, argv, "-d")) {
+                cout << "Input error: (-d) sequence database path (blast database path) must be specified" << "\n";
+                exit(0);
+            }
+        }
+    }
+
+    if(!flagExist(argc, argv, "-o")) {
+        cout << "Input error: (-o) output path must be specified" << "\n";
+        exit(0);
+    }
+
     for(int i = 1; i < argc; i++) {
         if(strcmp(argv[i], "-i") == 0) {
             id_file = argv[i + 1];
         }
         if(strcmp(argv[i], "-r") == 0) {
             blast_table = argv[i + 1];
+            if(!fileExist(blast_table)) {
+                cout << "Input error: (-r) blast table result not found" << "\n";
+                exit(0);
+            }
         }
         if(strcmp(argv[i], "-d") == 0) {
             dbs = argv[i + 1];
+            if(!fileExist(dbs)) {
+                cout << "Input error: (-d) sequence database (blast database) not found" << "\n";
+                exit(0);
+            }
         }
         if(strcmp(argv[i], "-a") == 0) {
             input_multiple_fasta_path = argv[i + 1];
+            if(!fileExist(input_multiple_fasta_path)) {
+                cout << "Input error: (-a) fasta file not found" << "\n";
+                exit(0);
+            }
         }
         if(strcmp(argv[i], "-b") == 0) {
             bed_path = argv[i + 1];
+            bs = 1;
+            if(!binExist(bed_path, "s")) {
+                cout << "Input error: (-b) bedtools not found" << "\n";
+                exit(0);
+            }
         }
         if(strcmp(argv[i], "-m") == 0) {
             muscle_path = argv[i + 1];
+            ms = 1;
+            if(!binExist(muscle_path, "s")) {
+                cout << "Input error: (-m) muscle not found" << "\n";
+                exit(0);
+            }
         }
         if(strcmp(argv[i], "-p") == 0) {
             primer3_path = argv[i + 1];
+            ps = 1;
+            if(!binExist(primer3_path, "s")) {
+                cout << "Input error: (-p) primer3_core not found" << "\n";
+                exit(0);
+            }
         }
         if(strcmp(argv[i], "-t") == 0) {
             parameters_file = argv[i + 1];
+            if(!fileExist(parameters_file)) {
+                cout << "Input error: (-t) primer3 parameters file not found" << "\n";
+                exit(0);
+            }
         }
         if(strcmp(argv[i], "-q") == 0) {
             id_hits_for_each_query = atoi(argv[i + 1]);
@@ -349,6 +407,26 @@ int main(int argc, char** argv) {
             web_flag = argv[i + 1];
         }
     }
+
+    if(bs == 0) {
+        if(!binExist(bed_path, "")) {
+            cout << "Input error: (-b) bedtools not found" << "\n";
+            exit(0);
+        }
+    }
+    if(ms == 0) {
+        if(!binExist(muscle_path, "")) {
+            cout << "Input error: (-m) muscle not found" << "\n";
+            exit(0);
+        }
+    }
+    if(ps == 0) {
+        if(!binExist(primer3_path, "")) {
+            cout << "Input error: (-p) primer3_core not found" << "\n";
+            exit(0);
+        }
+    }
+
 /*
     string blast_table = "/home/yiwang/Public/GSP/example/blast.tab";
     string dbs = "/var/www/GSP/dbs/Triticum_aestivum.fa";
@@ -426,6 +504,75 @@ int main(int argc, char** argv) {
     }
 
     return 0;
+}
+
+bool fileExist(string path) {
+    ifstream fin(path);
+    int flag = 0;
+    if(fin) {
+        flag = 1;
+    } else {
+        flag = 0;
+    }
+    fin.close();
+    if(flag == 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool binExist(string path, string type) {
+    //cout << path << "\n";
+    if(type == "s") {
+        int flag = 0;
+        ifstream fin(path);
+        if (fin) {
+            flag = 1;
+        } else {
+            flag = 0;
+        }
+        fin.close();
+        if(flag == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        char* env_p = getenv("PATH");
+        string s_env_p = env_p;
+        vector<string> str_v = split(s_env_p, ":");
+        int flag = 0;
+        for(int i = 0; i < str_v.size(); i++) {
+            ifstream fin(str_v[i] + "/" + path);
+            if (fin) {
+                flag = 1;
+                break;
+            }
+            fin.close();
+        }
+        if(flag == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+}
+
+bool flagExist(int argc, char** argv, string flag) {
+    int exist_flag = 0;
+    for(int i = 1; i < argc; i++) {
+        if(strcmp(argv[i], flag.c_str()) == 0) {
+            exist_flag = 1;
+            break;
+        }
+    }
+    if(exist_flag == 1) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 string generateString(int length) {

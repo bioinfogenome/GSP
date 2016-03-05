@@ -18,10 +18,12 @@ There is number of additional dependencies not provided by GSP authors. Addition
 3. type "cmake ./src"
 4. type "make"
 
-note: If cmake is not installed, please go to https://cmake.org/.  
+Note:
+1. If cmake is not installed, please go to https://cmake.org/.  
+2. If Boost is not installed, please go to http://www.boost.org/.  
 
 # bin
-The project folder contains a excutable GSP file and the bin folder contains the executable files of the dependencies, all of them has tested in Ubuntu 14.04 (64-bit).
+The project folder contains an excutable GSP file and the bin folder contains the executable files of the dependencies, all of them has tested in Ubuntu 14.04 (64-bit).
 
 # Usage  
 Before using GSP, please generate a blast result (tab format). For example, using query sequences blast polyploid genome.  
@@ -30,9 +32,9 @@ Before using GSP, please generate a blast result (tab format). For example, usin
 <b>-r</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blast table result path  
 <b>-d</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sequence database path (blast database path)  
 <b>-a</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fasta file path (for design specefic priemrs in multiple sequences only)  
-<b>-b</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bed path  
-<b>-m</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;muscle path  
-<b>-p</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primer3 path  
+<b>-b</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bedtools path (default: bedtools)  
+<b>-m</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;muscle path (default: muscle)  
+<b>-p</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primer3 path (default: primer3_core)  
 <b>-t</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primer3 parameters file path  
 <b>-o</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output path  
 <b>-q</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number of hit sequences for perimer design of each query (default: 3)  
@@ -42,7 +44,9 @@ Before using GSP, please generate a blast result (tab format). For example, usin
 <b>-c</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different site in primer (default: 2)  
 <b>-e</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different site in 3 end of primer (default: No)  
 
-Please use absolute path  
+Note:  
+1. Make sure that the dependencies (bedtools, muscle, primer3_core) are in the $PATH. If not, they must be specified (-b, -m, -p).  
+2. Please use absolute path  
 
 <b>Example 1:</b>  
 Design specific primers in polyploid based on blast result.  
