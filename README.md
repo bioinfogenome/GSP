@@ -3,7 +3,7 @@ A tool for Genome Specific Primers design in polyploid species
 
 In a polyploid species, genes from the homeologous genomes exhibit a very high sequence similarity, especially in the coding regions. This makes it difficult to design genome-specific primers to amplify specific sequences from the individual genomes in the polyploid genome background. Development of genome-specific primers for important genes in polyploid species is very useful and critical not only for the study of sequence diversity and association mapping of genes in natural populations, but also for the development of gene-based functional markers for marker-assisted breeding. GSP is a powerful tool for designing genome-specific primers that can distinguish the sequences among different genomes in a polypoid species. In additoon, GSP also allow user to design specific priemrs in multiple sequence alignment.
 
-Web server: http://probes.pw.usda.gov/GSP/
+Web server: https://probes.pw.usda.gov/GSP/
 
 # Dependencies
 There is number of additional dependencies not provided by GSP authors. Additional programs include:  
